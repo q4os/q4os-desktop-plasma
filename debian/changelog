@@ -6,5 +6,7 @@ q4os-desktop-plasma (4.10-deba1) UNRELEASED; urgency=medium
   * Make Q4OS config cleaner
   * Add and update package scripts
   * Move to debhelper build framework
+  * Minor add comment
+  * Add control file variant for Quarkos versions
 
- -- Q4OS Team <devteam@q4os.org>  Thu, 07 May 2026 12:21:53 +0200
+ -- Q4OS Team <devteam@q4os.org>  Thu, 07 May 2026 12:28:47 +0200
