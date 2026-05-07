@@ -15,3 +15,5 @@ Provides:
 Replaces:
 Breaks:
 Description: Plasma desktop metapackage
+
+#replace desktop-base with kubuntu-settings-desktop for quarkos package
