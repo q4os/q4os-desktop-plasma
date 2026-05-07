@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+set +e
+
+# # kdesudo as defaults, otherwise problems with password dialog ('X-KDE-SubstituteUID=true' in .desktop files)
+# echo "Setting kdesudo as default in KDE .."
+# ( dash /usr/share/apps/q4os_system/bin/dpkg_reconfigure_ni.sh "kdesudo" "kdesu" "true" ) && true
+
+# echo "Diverting plasma defaults .."
+# dpkg-divert --divert /usr/share/kde4/apps/plasma-desktop/updates/addShowActivitiesManagerPlasmoid.js.q4diverted --rename /usr/share/kde4/apps/plasma-desktop/updates/addShowActivitiesManagerPlasmoid.js
+# dpkg-divert --divert /usr/share/kde4/apps/plasma-desktop/init/00-defaultLayout.js.q4diverted --rename /usr/share/kde4/apps/plasma-desktop/init/00-defaultLayout.js
+# dpkg-divert --divert /usr/share/kde4/apps/plasma/layout-templates/org.kde.plasma-desktop.defaultPanel/contents/layout.js.q4diverted --rename /usr/share/kde4/apps/plasma/layout-templates/org.kde.plasma-desktop.defaultPanel/contents/layout.js
+
+set -e
