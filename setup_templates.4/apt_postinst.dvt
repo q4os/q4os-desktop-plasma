@@ -26,6 +26,8 @@ case "$1" in
       else
         QEDTN1="Q4OS"
       fi
+      QDSTRA="$( dash /usr/share/apps/q4os_system/bin/print_qaptdistr.sh )"
+      echo "Distro:  [$QEDTN1, $QDSTRA]"
 
 #       #plasma tweaks
 #       CFGFL1="/usr/share/plasma/shells/org.kde.plasma.desktop/contents/defaults"
@@ -35,13 +37,6 @@ case "$1" in
 #       fi
 #       unset CFGFL1
 #       CFGFL1="/usr/share/plasma/layout-templates/org.kde.plasma.desktop.defaultPanel/contents/layout.js"
-#       if [ -f "$CFGFL1" ] ; then
-#         sed -i "s/panel.height = gridUnit \* 2$/panel.height = gridUnit * 2.4/" $CFGFL1
-#         # sed -i 's/panel.addWidget("org.kde.plasma.kickoff")/panel.addWidget("org.kde.plasma.kicker")/' $CFGFL1
-#         sed -i 's/panel.addWidget("org.kde.plasma.taskmanager")/panel.addWidget("org.kde.plasma.icontasks")/' $CFGFL1
-#       fi
-#       unset CFGFL1
-#       CFGFL1="/usr/share/plasma/layout-templates/org.kubuntu.desktop.defaultPanel/contents/layout.js"
 #       if [ -f "$CFGFL1" ] ; then
 #         sed -i "s/panel.height = gridUnit \* 2$/panel.height = gridUnit * 2.4/" $CFGFL1
 #         # sed -i 's/panel.addWidget("org.kde.plasma.kickoff")/panel.addWidget("org.kde.plasma.kicker")/' $CFGFL1
@@ -62,6 +57,15 @@ case "$1" in
         else
           kwriteconfig5 --file "$CFGFL1" --group "Branding" --key "Homepage" "https://www.q4os.org/"
           kwriteconfig5 --file "$CFGFL1" --group "Favorites" --key "FavoriteURLs" "preferred://browser,org.kde.dolphin.desktop,systemsettings.desktop" #google-chrome.desktop,org.kde.discover.desktop,org.kde.kontact.desktop,org.kde.kate.desktop,libreoffice-startcenter.desktop,org.kde.plasma-systemmonitor.desktop,org.kde.konsole.desktop
+        fi
+        chmod a+r "$CFGFL1"
+      fi
+      CFGFL1="/etc/xdg/kicker-extra-favoritesrc"
+      if [ -f "$CFGFL1" ] ; then
+        if [ "$QEDTN1" = "Quarkos" ] ; then
+          kwriteconfig5 --file "$CFGFL1" --group "General" --key "Prepend" "preferred://browser;org.kde.discover.desktop;org.kde.kontact.desktop;libreoffice-startcenter.desktop;org.kde.dolphin.desktop;org.kde.plasma-systemmonitor.desktop;systemsettings.desktop;org.kde.konsole.desktop;"
+        else
+          kwriteconfig5 --file "$CFGFL1" --group "General" --key "Prepend" "preferred://browser;org.kde.dolphin.desktop;systemsettings.desktop;"
         fi
         chmod a+r "$CFGFL1"
       fi
@@ -91,6 +95,13 @@ case "$1" in
         fi
       fi
       unset CFGFL1
+      CFGFL1="/usr/share/plasma/layout-templates/org.kubuntu.desktop.defaultPanel/contents/layout.js"
+      if [ -f "$CFGFL1" ] ; then
+        if [ "$QDSTRA" = "resolute" ] ; then
+          sed -i "/    app_software_str,$/d" $CFGFL1 #remove software manager icon from taskbar
+        fi
+      fi
+      unset CFGFL1
 
       if [ -n "$2" ] ; then
         echo "Former package version: ($2), look like an upgrade ..."
@@ -106,9 +117,6 @@ case "$1" in
       #     exit 0
       #   fi
       # fi
-
-      QDSTRA="$( dash /usr/share/apps/q4os_system/bin/print_qaptdistr.sh )"
-      echo "Distro [$QDSTRA]"
 
       CFGFL1="/etc/xdg/kcm-about-distrorc"
       QCODENM="$( OPT_UPPER_FIRST=1 OPT_CODENAME=1 dash /usr/share/apps/q4os_system/bin/print_qaptdistr.sh )"
@@ -152,7 +160,7 @@ case "$1" in
         FACEFL="/usr/share/apps/q4os_system/share/.face_plasma" #/usr/share/icons/breeze/actions/22/im-user.svg
         if [ -f "$FACEFL" ] ; then
           echo "Configuring default user icon ..."
-          cp $FACEFL /etc/skel/.face
+          cp "$FACEFL" /etc/skel/.face
         fi
       fi
 

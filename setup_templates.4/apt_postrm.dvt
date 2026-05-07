@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+set +e
+
+if [ "$1" = remove ] ; then
+  echo "Remove diversions"
+  dpkg-divert --rename --remove /etc/skel/Desktop/org.kubuntu.web.home.desktop
+  dpkg-divert --rename --remove /etc/skel/Desktop/org.kfocus.web.howtos.desktop
+fi
+
+set -e
