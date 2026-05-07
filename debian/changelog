@@ -1,5 +1,10 @@
 q4os-desktop-plasma (4.10-deba1) UNRELEASED; urgency=medium
 
-  * 
+  * Optimize postinst script
+  * Minor remove unused files
+  * Unify Quarkos config files
+  * Make Q4OS config cleaner
+  * Add and update package scripts
+  * Move to debhelper build framework
 
- -- Q4OS Team <devteam@q4os.org>  Wed, 29 Apr 2026 14:12:51 +0200
+ -- Q4OS Team <devteam@q4os.org>  Thu, 07 May 2026 12:21:53 +0200
