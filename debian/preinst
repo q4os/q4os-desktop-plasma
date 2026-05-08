@@ -2,8 +2,10 @@
 
 set +e
 
-echo "Diverting plasma defaults .."
-dpkg-divert --divert /usr/share/apps/q4os_system/diversions/org.kubuntu.web.home.desktop.dvrt --rename /etc/skel/Desktop/org.kubuntu.web.home.desktop
-dpkg-divert --divert /usr/share/apps/q4os_system/diversions/org.kfocus.web.howtos.desktop.dvrt --rename /etc/skel/Desktop/org.kfocus.web.howtos.desktop
+if [ -f "/var/lib/q4os/isquarkos.stp" ] ; then
+  echo "Diverting plasma defaults .."
+  dpkg-divert --divert /usr/share/apps/q4os_system/diversions/org.kubuntu.web.home.desktop.dvrt --rename /etc/skel/Desktop/org.kubuntu.web.home.desktop
+  dpkg-divert --divert /usr/share/apps/q4os_system/diversions/org.kfocus.web.howtos.desktop.dvrt --rename /etc/skel/Desktop/org.kfocus.web.howtos.desktop
+fi
 
 set -e
