@@ -52,20 +52,20 @@ case "$1" in
       CFGFL1="/etc/xdg/kickoffrc"
       if [ -f "$CFGFL1" ] ; then
         if [ "$QEDTN1" = "Quarkos" ] ; then
-          kwriteconfig5 --file "$CFGFL1" --group "Branding" --key "Homepage" "https://quark-os.sourceforge.io/"
-          kwriteconfig5 --file "$CFGFL1" --group "Favorites" --key "FavoriteURLs" "preferred://browser,org.kde.discover.desktop,org.kde.kontact.desktop,libreoffice-startcenter.desktop,org.kde.dolphin.desktop,org.kde.plasma-systemmonitor.desktop,systemsettings.desktop,org.kde.konsole.desktop"
+          kwrtcfgpm --file "$CFGFL1" --group "Branding" --key "Homepage" "https://quark-os.sourceforge.io/"
+          kwrtcfgpm --file "$CFGFL1" --group "Favorites" --key "FavoriteURLs" "preferred://browser,org.kde.discover.desktop,org.kde.kontact.desktop,libreoffice-startcenter.desktop,org.kde.dolphin.desktop,org.kde.plasma-systemmonitor.desktop,systemsettings.desktop,org.kde.konsole.desktop"
         else
-          kwriteconfig5 --file "$CFGFL1" --group "Branding" --key "Homepage" "https://www.q4os.org/"
-          kwriteconfig5 --file "$CFGFL1" --group "Favorites" --key "FavoriteURLs" "preferred://browser,org.kde.dolphin.desktop,systemsettings.desktop" #google-chrome.desktop,org.kde.discover.desktop,org.kde.kontact.desktop,org.kde.kate.desktop,libreoffice-startcenter.desktop,org.kde.plasma-systemmonitor.desktop,org.kde.konsole.desktop
+          kwrtcfgpm --file "$CFGFL1" --group "Branding" --key "Homepage" "https://www.q4os.org/"
+          kwrtcfgpm --file "$CFGFL1" --group "Favorites" --key "FavoriteURLs" "preferred://browser,org.kde.dolphin.desktop,systemsettings.desktop" #google-chrome.desktop,org.kde.discover.desktop,org.kde.kontact.desktop,org.kde.kate.desktop,libreoffice-startcenter.desktop,org.kde.plasma-systemmonitor.desktop,org.kde.konsole.desktop
         fi
         chmod a+r "$CFGFL1"
       fi
       CFGFL1="/etc/xdg/kicker-extra-favoritesrc"
       if [ -f "$CFGFL1" ] ; then
         if [ "$QEDTN1" = "Quarkos" ] ; then
-          kwriteconfig5 --file "$CFGFL1" --group "General" --key "Prepend" "preferred://browser;org.kde.discover.desktop;org.kde.kontact.desktop;libreoffice-startcenter.desktop;org.kde.dolphin.desktop;org.kde.plasma-systemmonitor.desktop;systemsettings.desktop;org.kde.konsole.desktop;"
+          kwrtcfgpm --file "$CFGFL1" --group "General" --key "Prepend" "preferred://browser;org.kde.discover.desktop;org.kde.kontact.desktop;libreoffice-startcenter.desktop;org.kde.dolphin.desktop;org.kde.plasma-systemmonitor.desktop;systemsettings.desktop;org.kde.konsole.desktop;"
         else
-          kwriteconfig5 --file "$CFGFL1" --group "General" --key "Prepend" "preferred://browser;org.kde.dolphin.desktop;systemsettings.desktop;"
+          kwrtcfgpm --file "$CFGFL1" --group "General" --key "Prepend" "preferred://browser;org.kde.dolphin.desktop;systemsettings.desktop;"
         fi
         chmod a+r "$CFGFL1"
       fi
@@ -120,17 +120,17 @@ case "$1" in
 
       CFGFL1="/etc/xdg/kcm-about-distrorc"
       QCODENM="$( OPT_UPPER_FIRST=1 OPT_CODENAME=1 dash /usr/share/apps/q4os_system/bin/print_qaptdistr.sh )"
-      kwriteconfig5 --file "$CFGFL1" --group "General" --key "Name" "$QEDTN1 $QCODENM"
+      kwrtcfgpm --file "$CFGFL1" --group "General" --key "Name" "$QEDTN1 $QCODENM"
       if [ "$QEDTN1" = "Q4OS" ] ; then
-        kwriteconfig5 --file "$CFGFL1" --group "General" --key "LogoPath" "/usr/share/icons/hicolor/64x64/apps/q4oslogo2.png"
-        kwriteconfig5 --file "$CFGFL1" --group "General" --key "Website" "https://q4os.org"
+        kwrtcfgpm --file "$CFGFL1" --group "General" --key "LogoPath" "/usr/share/icons/hicolor/64x64/apps/q4oslogo2.png"
+        kwrtcfgpm --file "$CFGFL1" --group "General" --key "Website" "https://q4os.org"
         QVERSN="$( get-q4os-version | awk -F'.' '{ print $1 }' )"
-        kwriteconfig5 --file "$CFGFL1" --group "General" --key "Version" "$QVERSN"
+        kwrtcfgpm --file "$CFGFL1" --group "General" --key "Version" "$QVERSN"
       elif [ "$QEDTN1" = "Quarkos" ] ; then
-        kwriteconfig5 --file "$CFGFL1" --group "General" --key "LogoPath" "/usr/share/icons/hicolor/64x64/apps/q4oslogo2.png"
-        kwriteconfig5 --file "$CFGFL1" --group "General" --key "Website" "https://quark-os.sourceforge.io/"
+        kwrtcfgpm --file "$CFGFL1" --group "General" --key "LogoPath" "/usr/share/icons/hicolor/64x64/apps/q4oslogo2.png"
+        kwrtcfgpm --file "$CFGFL1" --group "General" --key "Website" "https://quark-os.sourceforge.io/"
         QVERSN="$( get-q4os-version | awk -F'.' '{ print $2".04" }' )"
-        kwriteconfig5 --file "$CFGFL1" --group "General" --key "Version" "$QVERSN"
+        kwrtcfgpm --file "$CFGFL1" --group "General" --key "Version" "$QVERSN"
       fi
       chmod a+r "$CFGFL1"
       unset CFGFL1
@@ -138,9 +138,9 @@ case "$1" in
       #polish for debonaire plasma theme
       if [ "$QDSTRA" = "forky" ] || [ "$QDSTRA" = "trixie" ] || [ "$QDSTRA" = "resolute" ] ; then
         CFGFL1="/etc/xdg/breezerc"
-        kwriteconfig5 --file "$CFGFL1" --group "Common" --key "OutlineIntensity" "OutlineOff"
-        kwriteconfig5 --file "$CFGFL1" --group "Common" --key "ShadowSize" "ShadowMedium"
-        kwriteconfig5 --file "$CFGFL1" --group "Common" --key "ShadowStrength" "200"
+        kwrtcfgpm --file "$CFGFL1" --group "Common" --key "OutlineIntensity" "OutlineOff"
+        kwrtcfgpm --file "$CFGFL1" --group "Common" --key "ShadowSize" "ShadowMedium"
+        kwrtcfgpm --file "$CFGFL1" --group "Common" --key "ShadowStrength" "200"
         chmod a+r "$CFGFL1"
         unset CFGFL1
       fi
