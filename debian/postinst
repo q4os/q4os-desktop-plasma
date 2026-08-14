@@ -70,6 +70,12 @@ case "$1" in
         chmod a+r "$CFGFL1"
       fi
       unset CFGFL1
+      # KNOWN LIMITATION (confirmed 2026-08-14, plasma-desktop/plasma-workspace 6.6.4 on resolute):
+      # the next 3 blocks (taskmanager/kicker/kickoff) sed-patch a loose contents/config/main.xml
+      # that no longer ships on resolute - Plasma 6 compiles each plasmoid's default config into
+      # its .so (org.kde.plasma.icontasks/kicker/kickoff now only have a bare metadata.json on disk).
+      # The [ -f "$CFGFL1" ] guard means these 3 blocks silently no-op there; don't assume they do
+      # anything on resolute (or any future Plasma-6-only target) just because they're still here.
       CFGFL1="/usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/config/main.xml" #default task manager launchers
       if [ -f "$CFGFL1" ] ; then
         if [ "$QEDTN1" = "Quarkos" ] ; then
@@ -95,6 +101,16 @@ case "$1" in
         fi
       fi
       unset CFGFL1
+      # This only strips Discover from the org.kubuntu.desktop* look-and-feel layout (the
+      # "Kubuntu" global theme, kubuntu-settings-desktop's org.kubuntu.desktop.defaultPanel
+      # template). It does NOT cover stock "Breeze" (org.kde.breeze.desktop, shipped unmodified
+      # by plasma-workspace-data): Breeze's own layout.js just loads the generic upstream
+      # org.kde.plasma.desktop.defaultPanel template, which adds org.kde.plasma.icontasks with
+      # no explicit launcher list, so it falls back to that widget's compiled-in default -
+      # which unconditionally pins org.kde.discover.desktop with no installed-check. Switching
+      # to plain Breeze after uninstalling plasma-discover will show a dead Discover pin; this
+      # is inherent upstream behavior, not fixable here without a functional patch (KNOWN, not
+      # planned - see bug report 2026-08-14).
       CFGFL1="/usr/share/plasma/layout-templates/org.kubuntu.desktop.defaultPanel/contents/layout.js"
       if [ -f "$CFGFL1" ] ; then
         if [ "$QDSTRA" = "resolute" ] ; then
