@@ -1,3 +1,16 @@
+q4os-desktop-plasma (4.11-deba1) UNRELEASED; urgency=medium
+
+  * Depend on q4os-sw-profiler5, the Qt5 Desktop Profiler frontend: the profiler
+    frontend is the edition's hard dependency now (q4os-desktop-trinity has
+    q4os-sw-profiler), q4os-desktop itself no longer names it - Plasma no longer
+    needs the TDE frontend.
+  * Depend on q4os-swcentre5 the same way, the Qt5 Software Centre frontend:
+    q4os-desktop no longer names q4os-swcentre / q4os-swcentre-data (the
+    Trinity edition keeps them in q4os-desktop-trinity; -data comes with
+    q4os-swcentre-common).
+
+ -- Q4OS Team <devteam@q4os.org>  Fri, 25 Sep 2026 09:31:05 +0200
+
 q4os-desktop-plasma (4.10-deba1) UNRELEASED; urgency=medium
 
   * Optimize postinst script

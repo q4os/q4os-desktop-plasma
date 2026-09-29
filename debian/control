@@ -8,7 +8,7 @@ Standards-Version: 3.8.4
 Package: q4os-desktop-plasma
 Architecture: all
 Pre-Depends: libc6, plasma-workspace, plasma-desktop-data, q4os-base
-Depends:
+Depends: q4os-sw-profiler5, q4os-swcentre5
 Recommends: desktop-base, sddm, sddm-theme-breeze, kde-plasma-desktop, plasma-nm, plasma-pa, kdialog, dolphin, fonts-noto-core, fonts-noto-ui-core, q4os-cpuq5, q4os-welcome5
 Conflicts:
 Provides:
