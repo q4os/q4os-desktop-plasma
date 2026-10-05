@@ -1,3 +1,22 @@
+q4os-desktop-plasma (4.13-deba1) UNRELEASED; urgency=medium
+
+  * Recommend q4os-wificonnect5, the plain Qt5 frontend of the wireless connection
+    tool the first login script (q4os-base 4.31.13-a1) runs. A recommendation
+    like q4os-cpuq5 and q4os-welcome5: installed by default, removable, and harmless
+    on a suite the tool is not built for yet.
+
+ -- Q4OS Team <q4os@q4os.org>  Sat, 03 Oct 2026 23:00:00 +0200
+
+q4os-desktop-plasma (4.12-deba1) UNRELEASED; urgency=medium
+
+  * Depend on q4os-setup5, the Qt5 frontend of the Q4OS Setup utility: the
+    setup frontend is the edition's hard dependency now (q4os-desktop-trinity
+    has q4os-setup), q4os-desktop itself no longer names it - Plasma no longer
+    needs the TDE frontend. /usr/bin/appsetup2.exu (q4os-setup-common) starts
+    the frontend of the running session.
+
+ -- Q4OS Team <devteam@q4os.org>  Sat, 03 Oct 2026 12:00:00 +0200
+
 q4os-desktop-plasma (4.11-deba1) UNRELEASED; urgency=medium
 
   * Depend on q4os-sw-profiler5, the Qt5 Desktop Profiler frontend: the profiler
