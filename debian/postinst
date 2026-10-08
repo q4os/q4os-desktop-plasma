@@ -163,8 +163,8 @@ case "$1" in
 
       if [ "$QDSTRA" != "bookworm" ] && [ "$QDSTRA" != "bullseye" ] && [ "$QDSTRA" != "noble" ] && [ "$QDSTRA" != "jammy" ] && [ "$QDSTRA" != "raspbian12" ] ; then
         #don't run plasma-welcome wizzard
-        /opt/trinity/bin/kwriteconfig --file "/etc/xdg/plasma-welcomerc" --group "General" --key "ShouldShow" "false"
-        # /opt/trinity/bin/kwriteconfig --file "/etc/xdg/plasma-welcomerc" --group "General" --key "LastSeenVersion" "10"
+        kwrtcfgpm --file "/etc/xdg/plasma-welcomerc" --group "General" --key "ShouldShow" "false"
+        # kwrtcfgpm --file "/etc/xdg/plasma-welcomerc" --group "General" --key "LastSeenVersion" "10"
         chmod a+r /etc/xdg/plasma-welcomerc
       fi
 

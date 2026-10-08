@@ -1,3 +1,11 @@
+q4os-desktop-plasma (4.14-uqka1) UNRELEASED; urgency=medium
+
+  * Turn off the plasma-welcome wizard with kwrtcfgpm instead of Trinity's kwriteconfig:
+    on a Plasma install without Trinity the setting was never written, and new users
+    got the KDE welcome wizard next to the Q4OS Welcome screen (trixie, forky, resolute).
+
+ -- Q4OS Team <q4os@q4os.org>  Wed, 07 Oct 2026 19:48:54 +0200
+
 q4os-desktop-plasma (4.13-uqka1) UNRELEASED; urgency=medium
 
   * Recommend q4os-wificonnect5, the plain Qt5 frontend of the wireless connection
